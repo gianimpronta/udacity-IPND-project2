@@ -66,14 +66,11 @@ def questions(level):
     question, answers = level[0], level[1]
     guessed = 0
     while guessed < len(answers):
-        if guessed != 0:
+        if guessed:
             question = question.replace('[__%d__]' % guessed, answers[guessed - 1])
         while True:
             print question + '\n' + '-' * 60
-            if guessed == 0:
-                print 'What\'s the answer for the 1st question?'
-            else:
-                print 'What\'s the answer for the next question?'
+            ask(guessed)
             user_answer = raw_input().lower()
             if user_answer == answers[guessed].lower():
                 guessed += 1
@@ -83,6 +80,21 @@ def questions(level):
                 time.sleep(1)
         clear()
 
+
+def ask(question):
+    """
+    Request a answer from the user
+    :param question: 
+    :type question: 
+    """
+    if question == 0:
+        print 'What\'s the answer for the first question?'
+    if question == 1:
+        print 'What\'s the answer for the second question?'
+    if question == 2:
+        print 'What\'s the answer for the third question?'
+    if question == 3:
+        print 'What\'s the answer for the last question?'
 
 def clear():
     """
